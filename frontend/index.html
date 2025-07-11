@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Simple Frontend</title>
+</head>
+<body>
+    <h1>Products</h1>
+    <ul id="product-list"></ul>
+    <script>
+        // Use localhost as the browser will resolve this from your host machine
+        fetch('http://localhost:3001/api/products')
+            .then(response => response.json())
+            .then(data => {
+                const list = document.getElementById('product-list');
+                data.forEach(product => {
+                    const li = document.createElement('li');
+                    li.textContent = `${product.name}: ${product.description}`;
+                    list.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error fetching products:', error));
+    </script>
+</body>
+</html>
